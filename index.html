@@ -14,7 +14,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add("js")</script>
+<script>
+  document.documentElement.classList.add("js");
+  // При презареждане винаги започваме от началото на страницата
+  (function () {
+    var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    if (!nav || nav.type !== "reload") return;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+    var top = function () { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); };
+    top();
+    addEventListener("DOMContentLoaded", top);
+    addEventListener("load", top);
+  })();
+</script>
 <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
 </head>
 <body>
