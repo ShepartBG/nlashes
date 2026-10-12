@@ -12,7 +12,7 @@ function eyeTexture() {
   c.width = 1024; c.height = 512;
   const g = c.getContext("2d");
   const bg = g.createLinearGradient(0, 0, 1024, 0);
-  bg.addColorStop(0, "#efd9d3"); bg.addColorStop(.25, "#fffaf7"); bg.addColorStop(.5, "#efd9d3"); bg.addColorStop(1, "#efd9d3");
+  bg.addColorStop(0, "#e3dfe0"); bg.addColorStop(.25, "#fcfafb"); bg.addColorStop(.5, "#e3dfe0"); bg.addColorStop(1, "#e3dfe0");
   g.fillStyle = bg; g.fillRect(0, 0, 1024, 512);
   const cx = 256, cy = 256, R = 80;
   let gr = g.createRadialGradient(cx, cy, 10, cx, cy, R);
@@ -25,7 +25,7 @@ function eyeTexture() {
     g.beginPath(); g.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1); g.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2); g.stroke();
   }
   g.strokeStyle = "rgba(30,15,10,.55)"; g.lineWidth = 6; g.beginPath(); g.arc(cx, cy, R - 2, 0, 7); g.stroke();
-  g.fillStyle = "#120a08"; g.beginPath(); g.arc(cx, cy, 30, 0, 7); g.fill();
+  g.fillStyle = "#100a0b"; g.beginPath(); g.arc(cx, cy, 30, 0, 7); g.fill();
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   t.anisotropy = 4;
@@ -126,16 +126,16 @@ export function init(host, { reduced, finePointer, pointer }) {
   // Очна ябълка
   const ball = new THREE.Mesh(
     new THREE.SphereGeometry(1, 96, 64),
-    new THREE.MeshPhysicalMaterial({ map: eyeTexture(), roughness: .38, clearcoat: .8, clearcoatRoughness: .08, sheen: .3, sheenColor: new THREE.Color("#ffd9de") })
+    new THREE.MeshPhysicalMaterial({ map: eyeTexture(), roughness: .38, clearcoat: .8, clearcoatRoughness: .08, sheen: .3, sheenColor: new THREE.Color("#f6e2e5") })
   );
   eye.add(ball);
 
   // Клепачи — сатенено розово злато
   const lidMat = new THREE.MeshPhysicalMaterial({
-    color: "#cf8f8d", metalness: .32, roughness: .36, clearcoat: .8, clearcoatRoughness: .2,
-    iridescence: .3, iridescenceIOR: 1.35, sheen: 1, sheenColor: new THREE.Color("#ffd6d2"), side: THREE.DoubleSide
+    color: "#c09ca2", metalness: .32, roughness: .36, clearcoat: .8, clearcoatRoughness: .2,
+    iridescence: .3, iridescenceIOR: 1.35, sheen: 1, sheenColor: new THREE.Color("#f5dce0"), side: THREE.DoubleSide
   });
-  const lashMat = new THREE.MeshPhysicalMaterial({ color: "#26170f", roughness: .35, clearcoat: .6, metalness: .1 });
+  const lashMat = new THREE.MeshPhysicalMaterial({ color: "#1c191a", roughness: .35, clearcoat: .6, metalness: .1 });
   const LR = 1.05;
 
   const upper = new THREE.Group();
@@ -161,11 +161,11 @@ export function init(host, { reduced, finePointer, pointer }) {
   orbit.rotation.set(deg(72), deg(-14), deg(10));
   root.add(orbit);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(1.75, .008, 8, 220),
-    new THREE.MeshPhysicalMaterial({ color: "#d8b083", metalness: 1, roughness: .22 }));
+    new THREE.MeshPhysicalMaterial({ color: "#b3a8ac", metalness: 1, roughness: .22 }));
   orbit.add(ring);
   const pearlMat = new THREE.MeshPhysicalMaterial({
-    color: "#fff6f1", roughness: .14, clearcoat: 1, clearcoatRoughness: .05,
-    iridescence: 1, iridescenceIOR: 1.3, iridescenceThicknessRange: [180, 520], sheen: 1, sheenColor: new THREE.Color("#ffd4dc")
+    color: "#f9f7f8", roughness: .14, clearcoat: 1, clearcoatRoughness: .05,
+    iridescence: 1, iridescenceIOR: 1.3, iridescenceThicknessRange: [180, 520], sheen: 1, sheenColor: new THREE.Color("#f5dee2")
   });
   const pearls = [];
   const pearlGeo = new THREE.SphereGeometry(1, 48, 32);

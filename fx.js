@@ -39,19 +39,19 @@ function silk() {
       vec2 r = vec2(fbm(p + 1.9 * q + vec2(1.7, 9.2) + t * 1.4), fbm(p + 1.9 * q + vec2(8.3, 2.8) - t));
       float f = fbm(p + 1.6 * r);
       float folds = sin((p.x * 0.9 + p.y * 1.25 + f * 3.6) * 3.14159);
-      vec3 cream = vec3(0.935, 0.880, 0.830);
-      vec3 sand  = vec3(0.885, 0.795, 0.725);
-      vec3 blush = vec3(0.915, 0.770, 0.760);
-      vec3 rose  = vec3(0.820, 0.600, 0.615);
-      vec3 gold  = vec3(0.860, 0.735, 0.590);
-      vec3 cocoa = vec3(0.600, 0.430, 0.410);
+      vec3 cream = vec3(0.865, 0.850, 0.855);
+      vec3 sand  = vec3(0.816, 0.792, 0.800);
+      vec3 blush = vec3(0.878, 0.796, 0.808);
+      vec3 rose  = vec3(0.769, 0.651, 0.671);
+      vec3 gold  = vec3(0.745, 0.706, 0.718);
+      vec3 cocoa = vec3(0.557, 0.451, 0.471);
       vec3 col = mix(cream, sand, smoothstep(0.3, 0.7, fbm(p * 0.7 - t)));
       col = mix(col, blush, smoothstep(0.35, 0.8, f) * 0.85);
       col = mix(col, rose, smoothstep(0.65, 1.1, length(q)) * 0.32);
       col = mix(col, gold, smoothstep(0.55, 0.85, r.x) * 0.28);
       col = mix(col, cocoa, smoothstep(-0.2, -1.0, folds) * 0.12);
-      col += smoothstep(0.7, 1.0, folds) * vec3(1.0, 0.96, 0.93) * 0.08;
-      col += vec3(1.0, 0.92, 0.91) * exp(-d * d * 5.0) * 0.16 * uHover;
+      col += smoothstep(0.7, 1.0, folds) * vec3(0.969, 0.961, 0.965) * 0.035;
+      col += vec3(0.980, 0.929, 0.937) * exp(-d * d * 5.0) * 0.1 * uHover;
       col *= mix(0.9, 1.0, smoothstep(1.25, 0.3, length(uv - 0.5)));
       gl_FragColor = vec4(col, 1.0);
     }`;
@@ -126,12 +126,12 @@ function sparkles() {
   const pearl = sprite(64, (g, s) => {
     const r = s / 2;
     let gr = g.createRadialGradient(r * .7, r * .65, 1, r, r, r);
-    gr.addColorStop(0, "#ffffff"); gr.addColorStop(.35, "#fbefea"); gr.addColorStop(.75, "#ecd2cd"); gr.addColorStop(1, "rgba(214,170,168,0)");
+    gr.addColorStop(0, "#ffffff"); gr.addColorStop(.35, "#f4f1f2"); gr.addColorStop(.75, "#e5d4d7"); gr.addColorStop(1, "rgba(204, 178, 183,0)");
     g.fillStyle = gr; g.beginPath(); g.arc(r, r, r * .92, 0, 7); g.fill();
     gr = g.createLinearGradient(0, 0, s, s);
-    gr.addColorStop(0, "rgba(255,220,235,.35)"); gr.addColorStop(.5, "rgba(210,235,255,.25)"); gr.addColorStop(1, "rgba(255,235,200,.35)");
+    gr.addColorStop(0, "rgba(247, 228, 231,.35)"); gr.addColorStop(.5, "rgba(222, 234, 243,.25)"); gr.addColorStop(1, "rgba(231, 224, 226,.35)");
     g.fillStyle = gr; g.beginPath(); g.arc(r, r, r * .9, 0, 7); g.fill();
-    g.fillStyle = "rgba(255,255,255,.95)"; g.beginPath(); g.ellipse(r * .7, r * .62, r * .2, r * .13, -.6, 0, 7); g.fill();
+    g.fillStyle = "rgba(255, 255, 255,.95)"; g.beginPath(); g.ellipse(r * .7, r * .62, r * .2, r * .13, -.6, 0, 7); g.fill();
   });
   const star = color => sprite(48, (g, s) => {
     const r = s / 2;
@@ -147,7 +147,7 @@ function sparkles() {
     }
     g.closePath(); g.fill();
   });
-  const stars = ["rgba(255,214,190,A)", "rgba(244,190,200,A)", "rgba(255,240,220,A)", "rgba(226,195,166,A)"].map(star);
+  const stars = ["rgba(227, 218, 221,A)", "rgba(232, 202, 207,A)", "rgba(240, 235, 237,A)", "rgba(200, 192, 195,A)"].map(star);
 
   const parts = [];
   const MAX = mobile() ? 70 : 160;

@@ -295,31 +295,31 @@
     const sh = up.map((pt, i) => (i === 0 || i === 3 ? pt : [pt[0], pt[1] + 16]));
     svg.innerHTML = `
       <defs><clipPath id="${id}"><path d="${shape}"/></clipPath></defs>
-      <path d="M82 150C140 38 272 32 326 134" fill="none" stroke="#d79da3" stroke-width="1.4" opacity=".6"/>
+      <path d="M82 150C140 38 272 32 326 134" fill="none" stroke="#caaaaf" stroke-width="1.4" opacity=".6"/>
       <path d="${shape}" fill="url(#scleraG)"/>
       <g clip-path="url(#${id})">
         <circle cx="200" cy="158" r="50" fill="url(#irisG)"/>
-        <circle cx="200" cy="158" r="20" fill="#24140f"/>
+        <circle cx="200" cy="158" r="20" fill="#1b1819"/>
         <circle cx="214" cy="143" r="8" fill="#fff" fill-opacity=".9"/>
-        <path d="${cubicD(up) + reverseCubic(sh)}Z" fill="#a9646f" fill-opacity=".1"/>
+        <path d="${cubicD(up) + reverseCubic(sh)}Z" fill="#99747a" fill-opacity=".1"/>
       </g>
-      <path d="${cubicD(LOW)}" fill="none" stroke="#4a302c" stroke-width="1.2" opacity=".5"/>
-      <path d="${lashesD(LOW, lowerLashOpts)}" fill="#4a302c" opacity=".5"/>
-      <path d="${cubicD(up)}" fill="none" stroke="#2b1c1a" stroke-width="${lashOpts.lid || 3}" stroke-linecap="round"/>
+      <path d="${cubicD(LOW)}" fill="none" stroke="#433336" stroke-width="1.2" opacity=".5"/>
+      <path d="${lashesD(LOW, lowerLashOpts)}" fill="#433336" opacity=".5"/>
+      <path d="${cubicD(up)}" fill="none" stroke="#271e1f" stroke-width="${lashOpts.lid || 3}" stroke-linecap="round"/>
       <path d="${lashesD(up, lashOpts)}" fill="${lashColor}"/>`;
   }
   const before = $('[data-eye="before"]');
   const after = $('[data-eye="after"]');
-  if (before) staticEye(before, { n: 30, t0: .08, t1: .97, fan: 1, len: t => 12 + 10 * t, w: .85, seed: 5, lid: 1.6 }, "#6a4c42");
-  if (after) staticEye(after, { n: 46, t0: .04, t1: .99, fan: 4, spread: .34, len: t => 26 + 36 * Math.pow(t, 1.3), w: 1, seed: 9, lid: 3.4 }, "#24140f");
+  if (before) staticEye(before, { n: 30, t0: .08, t1: .97, fan: 1, len: t => 12 + 10 * t, w: .85, seed: 5, lid: 1.6 }, "#595355");
+  if (after) staticEye(after, { n: 46, t0: .04, t1: .99, fan: 4, spread: .34, len: t => 26 + 36 * Math.pow(t, 1.3), w: 1, seed: 9, lid: 3.4 }, "#1b1819");
 
   const STRIP = [[24, 112], [120, 28], [282, 24], [378, 104]];
   function stripSVG(art) {
     const opts = { t0: .03, t1: .99, seed: 21, lenScale: 1.15, ...art };
     return `<svg viewBox="0 -20 400 150" aria-hidden="true">
-      <path d="${cubicD(STRIP)}C300 140 110 146 24 112Z" fill="#f0d3d2" opacity=".55"/>
-      <path d="${cubicD(STRIP)}" fill="none" stroke="#2b1c1a" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="${lashesD(STRIP, opts)}" fill="#2b1c1a"/></svg>`;
+      <path d="${cubicD(STRIP)}C300 140 110 146 24 112Z" fill="#e9d9dc" opacity=".55"/>
+      <path d="${cubicD(STRIP)}" fill="none" stroke="#271e1f" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="${lashesD(STRIP, opts)}" fill="#271e1f"/></svg>`;
   }
 
   /* ---------------------------------------------------------------
@@ -586,7 +586,7 @@
     g.fillRect(0, 0, 64, 64);
     return c;
   }
-  sprites = ["rgba(232,180,186,A)", "rgba(196,132,140,A)", "rgba(214,178,140,A)", "rgba(255,255,255,A)"].map(makeSprite);
+  sprites = ["rgba(220, 192, 196,A)", "rgba(182, 146, 152,A)", "rgba(182, 172, 175,A)", "rgba(255, 255, 255,A)"].map(makeSprite);
 
   function sizeCanvas() {
     dpr = Math.min(window.devicePixelRatio || 1, isMobile() ? 1.5 : 2);
